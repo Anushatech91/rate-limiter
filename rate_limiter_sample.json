@@ -1,28 +1,59 @@
-[
-  {
-    "app_id": "app_001",
-    "model_id": "gpt-4.5",
-    "plan": "default",
-    "available_tokens": 100000,
-    "last_refill_ts": 1721424000,
-    "max_tokens": 100000,
-    "refill_rate": 1000,  // tokens per second
-    "burst_capacity": 20000,
-    "burst_window": 60,
-    "burst_tokens_used": 0,
-    "burst_window_start": 1721424000
-  },
-  {
-    "app_id": "app_002",
-    "model_id": "gpt-3.5",
-    "plan": "premium",
-    "available_tokens": 1000000,
-    "last_refill_ts": 1721424000,
-    "max_tokens": 1000000,
-    "refill_rate": 10000,
-    "burst_capacity": 100000,
-    "burst_window": 60,
-    "burst_tokens_used": 0,
-    "burst_window_start": 1721424000
-  }
-]
+{
+  "apps": [
+    {
+      "app_id": "app_001",
+      "models": [
+        {
+          "model_id": "gpt-4.5",
+          "rate_limit": {
+            "max_tokens": 100000,
+            "refill_rate": 1000,
+            "available_tokens": 85000,
+            "last_refill_ts": 1721424000
+          },
+          "burst": {
+            "burst_capacity": 20000,
+            "burst_window": 60,
+            "burst_tokens_used": 0,
+            "burst_window_start": 1721424000
+          }
+        },
+        {
+          "model_id": "gpt-3.5",
+          "rate_limit": {
+            "max_tokens": 50000,
+            "refill_rate": 500,
+            "available_tokens": 40000,
+            "last_refill_ts": 1721424100
+          },
+          "burst": {
+            "burst_capacity": 10000,
+            "burst_window": 60,
+            "burst_tokens_used": 2000,
+            "burst_window_start": 1721424120
+          }
+        }
+      ]
+    },
+    {
+      "app_id": "app_002",
+      "models": [
+        {
+          "model_id": "gpt-4.5",
+          "rate_limit": {
+            "max_tokens": 200000,
+            "refill_rate": 2000,
+            "available_tokens": 180000,
+            "last_refill_ts": 1721424200
+          },
+          "burst": {
+            "burst_capacity": 50000,
+            "burst_window": 60,
+            "burst_tokens_used": 5000,
+            "burst_window_start": 1721424230
+          }
+        }
+      ]
+    }
+  ]
+}
