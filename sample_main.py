@@ -68,3 +68,16 @@ def run_model(app_id: str, model_id: str, tokens: int = 1):
         "model_id": model_id,
         "tokens_used": tokens
     }
+
+
+# v2
+
+# ✅ API Route with SlowAPI wrapper + custom logic
+@app.get("/run-model")
+@limiter.limit("1000/minute")  # High default — real control via JSON
+def run_model(request: Request, app_id: str, model_id: str, tokens: int = 1):
+    apply_custom_rate_limit(app_id, model_id, tokens)
+    return {
+        "message": f"Request allowed for {app_id}/{model_id}",
+        "tokens_used": tokens
+    }
