@@ -3,6 +3,8 @@ import json
 with open("rate_limits.json") as f:
     rate_limit_config = json.load(f)
 
+v2
+rate_limiting = json.load(open("rate_limits.json"))
 
 import time
 from fastapi import HTTPException
