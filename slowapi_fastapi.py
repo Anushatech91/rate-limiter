@@ -19,3 +19,17 @@ async def inference(request: Request, payload: PayloadModel):
     request.state.model = payload.model_name
     # Delegate to service-level function
     return await call_model(request, payload.dict())
+
+
+--------------
+# limiter_config.py or app.py
+from slowapi import Limiter
+from limits.storage import RedisStorage  # optional for production
+
+def rate_limit_key_func(request):
+    return f"{request.state.app_id}:{request.state.model}"
+
+limiter = Limiter(
+    key_func=rate_limit_key_func,
+    storage_uri="redis://localhost:6379"  # optional: for persistent, distributed limits
+)
