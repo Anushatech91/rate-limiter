@@ -3,9 +3,6 @@ If your model-calling logic is defined in a separate module (e.g. llm_service.py
 
 In llm_service.py:
 
-python
-Copy
-Edit
 from slowapi import Limiter
 from fastapi import Request
 
@@ -17,9 +14,6 @@ async def call_model(request: Request, payload: dict):
     return await do_llm(payload)
 Then in your route handler:
 
-python
-Copy
-Edit
 from fastapi import Request
 from llm_service import call_model
 
