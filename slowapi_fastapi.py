@@ -33,3 +33,10 @@ limiter = Limiter(
     key_func=rate_limit_key_func,
     storage_uri="redis://localhost:6379"  # optional: for persistent, distributed limits
 )
+
+
+@router.post("/v1/chat/completions")
+async def chat_completions(params: LLMV1ChatCompletion, request: Request):
+    request.state.app_id = params.app_id
+    request.state.model = params.model
+    return await v1_chat_completions(params, request)
