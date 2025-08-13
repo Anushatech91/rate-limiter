@@ -8,14 +8,14 @@ async def extract_ids(request: Request, call_next):
     request.state.app_id = app_id
     request.state.model_id = model_id
 
-    # Build limiter key
-    limiter_key = f"{app_id}:{model_id}"
-    
-    # Apply limit check manually
+    # Use your existing function to get the limiter key
+    limit_key = request_helper.get_rate_limiting_string(request)
+
+    # Apply SlowAPI limit check manually
     try:
         limiter._check_request_limit(
             request,
-            lambda req: limiter_key,  # key function
+            lambda req: limit_key,  # Key function
             False
         )
     except RateLimitExceeded:
