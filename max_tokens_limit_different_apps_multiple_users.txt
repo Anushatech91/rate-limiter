@@ -1,0 +1,19 @@
+We ran a test to check how the requests per minute (RPM) limits behave for different app tiers. Each user was linked to a different app:
+
+User 1 → Basic app (200 tokens)
+
+User 2 → Standard app (1000 tokens)
+
+User 3 → Premium app (2000 tokens)
+
+The rule is that every app can only make 6 requests per minute.
+
+In our test, we sent 8 requests per user at the same time. What we saw was:
+
+For each user, the first 6 requests went through.
+
+The extra requests after that were blocked with a “Too Many Requests” response.
+
+For example, User 1’s 7th and 8th requests failed, and User 3’s 5th and 8th requests failed.
+
+So basically, even though different users had different token limits, the system correctly enforced the RPM cap of 6 requests for each user separately.
