@@ -1,0 +1,37 @@
+{
+  "models": {
+    "google": {
+      "gemini-1.5-flash-002": {
+        "rate_limit_details": {
+          "max_tokens": 125000,       // 50% of ~250k TPM
+          "refill_rate": 2083,        // 125k / 60 → ~2083 tokens/sec
+          "rpm": 8,                   // 50% of ~15 RPM
+          "burst_capacity": 100000,   // 80% of max_tokens
+          "burst_window": 1800        // 30 min → session-like bursts
+        }
+      }
+    },
+    "azure": {
+      "gpt-4.1-mini-2025-04-14-pyg-1": {
+        "rate_limit_details": {
+          "max_tokens": 50000,        // 50% of ~100k TPM
+          "refill_rate": 833,         // 50k / 60
+          "rpm": 500,                 // 50% of ~1000 RPM
+          "burst_capacity": 40000,    // 80% of max_tokens
+          "burst_window": 1800
+        }
+      }
+    },
+    "aws": {
+      "anthropic.claude-3.7-sonnet-20250219-v1:0": {
+        "rate_limit_details": {
+          "max_tokens": 100000,       // 50% of ~200k TPM
+          "refill_rate": 1666,        // 100k / 60
+          "rpm": 30,                  // 50% of ~60 RPM
+          "burst_capacity": 80000,    // 80% of max_tokens
+          "burst_window": 1800
+        }
+      }
+    }
+  }
+}
